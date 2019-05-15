@@ -1,0 +1,8 @@
+= simple_form_for([:admin, @presentation]) do |f|
+  = f.error_notification
+
+  .form-inputs
+
+  ul.form-actions
+    li = save_button
+    li = cancel_button admin_presentations_path

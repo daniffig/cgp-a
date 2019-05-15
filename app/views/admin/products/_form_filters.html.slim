@@ -1,0 +1,7 @@
+= search_form_for @q, url: admin_products_url do |f|
+  / = f.input :name_cont, label: Product.human_attribute_name(:name)
+  / = f.input :type_eq, as: :select, collection: product_types_for_filter, label: Product.human_attribute_name(:type)
+
+
+  = reset_button admin_products_path
+  = filter_button

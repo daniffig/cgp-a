@@ -1,0 +1,7 @@
+= search_form_for @q, url: admin_presentations_url do |f|
+  / = f.input :name_cont, label: Presentation.human_attribute_name(:name)
+  / = f.input :type_eq, as: :select, collection: presentation_types_for_filter, label: Presentation.human_attribute_name(:type)
+
+
+  = reset_button admin_presentations_path
+  = filter_button

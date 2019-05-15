@@ -1,0 +1,14 @@
+h1.title =t '.title'
+
+.row
+  .col-md-9
+    = render partial: 'sort', layout: 'sort_layout'
+
+    .index-list
+      = (render @products, layout: 'list_layout') || (render 'empty_list')
+
+  .col-md-3.sidebar
+    = render partial: 'actions', layout: 'actions_layout'
+    = render partial: 'form_filters', layout: 'form_filter_layout'
+
+= render 'paginator', {collection: @products}

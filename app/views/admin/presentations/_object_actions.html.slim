@@ -1,0 +1,8 @@
+ul.object-actions
+  - if policy([:admin, presentation]).show?
+    li = link_to fa_icon('search fw', text: t('views.actions.show'), class: 'blue'), admin_presentation_path(presentation)
+  - if policy([:admin, presentation]).edit?
+      li = link_to fa_icon('pencil fw', text: t('views.actions.edit'), class: 'yellow'), edit_admin_presentation_path(presentation)
+  
+  - if policy([:admin, presentation]).destroy?
+    li = link_to fa_icon('times fw', text: t('views.actions.destroy'), class: 'red'), admin_presentation_path(presentation), method: :delete, data: { confirm: t('views.common.confirmation', action: t('views.actions.destroy')) }
