@@ -21,5 +21,7 @@ module CgpA
   
       g.fallbacks[:slyt] = :slim
     end  
+
+    config.autoload_paths += Dir["#{config.root}/app/models/aspects/**/"]
   end
 end

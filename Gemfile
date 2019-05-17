@@ -50,6 +50,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'slyt-generator', git: 'https://gitlab+deploy-token-2:SXLESoFTARp8gFCKvxXL@gitlab.slyt.gba.gob.ar/ruby-gems/slyt-generator.git'
+
+  gem 'awesome_print'
 end
 
 group :test do

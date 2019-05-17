@@ -1,0 +1,2 @@
+class StringAspect < LiteralAspect
+end
