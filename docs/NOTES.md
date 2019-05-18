@@ -1,0 +1,1 @@
+* https://guides.rubyonrails.org/association_basics.html#polymorphic-associations

@@ -17,12 +17,18 @@ namespace :db do
       yerba_mate_union_tradicional = Product.create()
       yerba_mate_union_bcp = Product.create()
 
-      
-      yerba_mate_union_tradicional.aspects << ObjectAspect.new(aspectable: union)
-      yerba_mate_union_bcp.aspects << ObjectAspect.new(aspectable: union)
-      yerba_mate_union_bcp.aspects << LiteralAspect.new(aspectable: 500)
+      yerba_mate_union_tradicional.facets << union.as_facet
+      yerba_mate_union_bcp.facets << union.as_facet
+      yerba_mate_union_bcp.facets << Facet.with('flavor', 'frutilla')
+      yerba_mate_union_bcp.facets << Facet.with('flavor', 19)
 
-      ap yerba_mate_union_bcp.aspects
+      ap yerba_mate_union_bcp.facets.first.as_object
+
+      # ap yerba_mate_union_bcp.facets << union
+
+      # ap yerba_mate_union_bcp.facets
+
+
 
     #   brands = Brand.create([
     #     { name: 'Caserita' },

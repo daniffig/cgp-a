@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_17_150507) do
-
-  create_table "aspects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "type", null: false
-    t.string "value", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2019_05_18_021604) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -25,11 +18,22 @@ ActiveRecord::Schema.define(version: 2019_05_17_150507) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "presentations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_id", null: false
+  create_table "describable_facets", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "describable_type", null: false
+    t.integer "describable_id", null: false
+    t.bigint "facet_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_presentations_on_product_id"
+    t.index ["describable_id"], name: "index_describable_facets_on_describable_id"
+    t.index ["describable_type", "describable_id", "facet_id"], name: "index_describable_facets_on_describable_facet", unique: true
+    t.index ["describable_type", "describable_id"], name: "index_describable_facets_on_describable"
+    t.index ["describable_type"], name: "index_describable_facets_on_describable_type"
+    t.index ["facet_id"], name: "index_describable_facets_on_facet_id"
+  end
+
+  create_table "facets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "value", null: false
+    t.datetime "created_at", null: false
+    t.index ["value"], name: "index_facets_on_value"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -37,15 +41,4 @@ ActiveRecord::Schema.define(version: 2019_05_17_150507) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "products_aspects", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "aspect_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["aspect_id"], name: "aspect_id"
-    t.index ["product_id"], name: "product_id"
-  end
-
-  add_foreign_key "products_aspects", "aspects"
-  add_foreign_key "products_aspects", "products"
 end
